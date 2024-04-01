@@ -21,38 +21,38 @@
         <!-- Inclusion du header -->
         @include('include.header')
         
-        <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2">
-            <!-- Code pour le menu latéral gauche -->
-            <div class="sidebar d-flex">
-                <ul class="nav flex-column justify-content-between">
-                    <li class="nav-item">
-                        <a class="nav-link text-center text-decoration-none text-white" href="#">
-                            <img src="{{ asset('images/Icone_Calendrier.png') }}" alt="Calendrier" class="icone mb-2">
-                            <span class="d-block">Calendrier des tournées</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center text-decoration-none text-white" href="#">
-                            <img src="{{ asset('images/Icone_Inspection.png') }}" alt="Inspections" class="icone mb-2">
-                            <span class="d-block">Liste des Inspections</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center text-decoration-none text-white" href="#">
-                            <img src="{{ asset('images/Icone_Contact.png') }}" alt="Contact" class="icone mb-2">
-                            <span class="d-block">Contact</span>
-                        </a>
-                    </li>
-                </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- Code pour le menu latéral gauche -->
+                <div class="sidebar d-flex">
+                    <ul class="nav flex-column justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link text-center text-decoration-none text-white" href="#">
+                                <img src="{{ asset('images/Icone_Calendrier.png') }}" alt="Calendrier" class="icone mb-2">
+                                <span class="d-block">Calendrier des tournées</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-center text-decoration-none text-white" href="#">
+                                <img src="{{ asset('images/Icone_Inspection.png') }}" alt="Inspections" class="icone mb-2">
+                                <span class="d-block">Liste des Inspections</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-center text-decoration-none text-white" href="#">
+                                <img src="{{ asset('images/Icone_Contact.png') }}" alt="Contact" class="icone mb-2">
+                                <span class="d-block">Contact</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10">
+                @yield('content')
             </div>
         </div>
-        <div class="col-md-10">
-            @yield('content')
-        </div>
     </div>
-</div>
 
 
         <footer>

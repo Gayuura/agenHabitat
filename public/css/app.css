@@ -14,12 +14,12 @@
 }
 .img-msg{
     border-radius: 104px;
-    margin-right: 410px;
-    margin-top: 80px;
+    padding: 40px;
 }
 .container{
     display: flex;
     justify-content: center;
+    margin-top: 5%;
 }
 .msg_send{
     color: #41A707;
@@ -29,7 +29,6 @@
     font-style: italic;
     display: flex;
     justify-content: center;
-    margin-right: 410px;
 }
 .username{
     font-family: 'Segoe UI';
