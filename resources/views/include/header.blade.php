@@ -5,8 +5,14 @@
     </div>
     <div class="col-6">
       <div class="d-flex flex-column align-items-end">
-        <span class="username">David Dubois</span>
-        <button type="submit" class="btn_deconnexion">Déconnexion</button>
+        @guest
+        <form action=" {{route('logout')}}">
+          <button type="submit" class="btn_deconnexion">Déconnexion</button>
+        </form>
+        @endguest
+        @auth
+        <span class="username">{{ Auth::user()->name }}</span>
+        @endauth       
       </div>
     </div>
   </div>
