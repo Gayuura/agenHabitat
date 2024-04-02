@@ -11,3 +11,6 @@ Route::get('/contact', function () {
 Route::get('/sended', function () {
     return view('sended');
 });
+Route::get('/addInspection', function () {
+    return view('addInspection');
+});

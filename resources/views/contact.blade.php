@@ -4,7 +4,7 @@
     <h2 class="my-3">Contact Agen Habitat</h2>
     <div class="container my-5 d-flex align-items-center justify-content-center">
         <div class="col-6">
-            <form action="/contact" method="post" class="section">
+            <form action="/contact" method="post" class="section texte_blanc">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="name">Nom de l'inspecteur</label>

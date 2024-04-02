@@ -52,6 +52,9 @@
     height: 48px;
     border-radius: 24px;
 }
+.btn_connexion:hover{
+    background-color: #6a2572;
+}
 .btn_envoyer{
     width: 120px;
     height: 41px;
@@ -60,8 +63,13 @@
     margin-left: 264px ;
     margin-top: 28px;
 }
-.btn_connexion:hover{
-    background-color: #6a2572;
+.btn_enregistrer{
+    width: 113px;
+    height: 37px;
+    border-radius: 20px;
+    background-color: #365422;
+    margin-left: 70% ;
+    margin-top: 28px;
 }
 .icone{
     border-radius: 256px;
@@ -95,7 +103,6 @@ h2{
     align-items: center;
 }
 .form-group{
-    color: white;
     font-size: 25px;
     font-family: 'Segoe UI';
     font-weight: bold;
@@ -104,6 +111,12 @@ h2{
 .form-control{
     width: 295px;
     border-radius: 25px;
-    margin-left: 89px;
+    margin-left: 10%;
     margin-top: 10px;
+}
+.texte_blanc{
+    color: white;
+}
+.texte_noir{
+    color: black;
 }
