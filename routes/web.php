@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
+/*
 Route::get('/', function () {
     return view('connexion');
-});
+});*/
 Route::get('/contact', function () {
     return view('contact');
 });
@@ -18,6 +20,9 @@ Route::get('/addRapport', function () {
     return view('addRapport');
 });
 
+Route::get('/', [LoginController::class,'showLoginForm']);
+Route::post('/login', [LoginController::class,'authenticate'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 /*Route::get('/dashboard', function () {
     return view('dashboard');
