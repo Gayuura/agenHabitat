@@ -136,3 +136,28 @@ h3{
 .texte_noir{
     color: black;
 }
+#calendar {
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #CBC6C6;
+    z-index: 1;
+    position: relative;
+    max-width: 100%;
+}
+#event_form {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #D4D0D5;
+    border-radius: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 5%;
+    max-width: 600px;
+    width: 90%;
+}
+#createInspectionBtn,#annulerBtn {
+    margin-top: 15%;
+}

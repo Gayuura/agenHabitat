@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Inspection extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'adress',
+        'start',
+        'end',
+        'nomLoca',
+        'numLoca',
+        'conform',
+        'etat',
+    ];
 }

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\FullCalenderController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 Route::get('/', function () {
@@ -23,6 +25,9 @@ Route::get('/addRapport', function () {
 Route::get('/', [LoginController::class,'showLoginForm']);
 Route::post('/login', [LoginController::class,'authenticate'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('calender',[FullCalenderController::class, 'index']);
+Route::post('calender/action', [FullCalenderController::class, 'action']);
 
 /*Route::get('/dashboard', function () {
     return view('dashboard');

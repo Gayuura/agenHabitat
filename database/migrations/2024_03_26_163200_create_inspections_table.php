@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('inspections', function (Blueprint $table) {
             $table->id();
-            $table->string('libellé');
-            $table->string('adresse');
-            $table->dateTime('date_et_heure');
-            $table->string('nomLocataire');
-            $table->integer('numeroLocataire');
-            $table->boolean('conformité');
-            $table->boolean('état');
+            $table->string('title');
+            $table->string('adress');
+            $table->datetime('start');
+            $table->datetime('end');
+            $table->string('nomLoca');
+            $table->integer('numLoca');
+            $table->boolean('conform');
+            $table->boolean('etat');
             $table->timestamps();
         });
     }
