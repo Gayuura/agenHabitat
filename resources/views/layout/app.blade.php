@@ -44,7 +44,7 @@
                 <div class="sidebar d-flex">
                     <ul class="nav flex-column justify-content-between">
                         <li class="nav-item">
-                            <a class="nav-link text-center text-decoration-none text-white" href="#">
+                            <a class="nav-link text-center text-decoration-none text-white" href="{{ url('/calender') }}">
                                 <img src="{{ asset('images/Icone_Calendrier.png') }}" alt="Calendrier" class="icone mb-2">
                                 <span class="d-block">Calendrier des tournées</span>
                             </a>

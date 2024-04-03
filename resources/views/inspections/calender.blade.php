@@ -10,7 +10,7 @@
                     <form>
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="title">Nom de l'inspection :</label>
+                                <label for="title" class="champs_formulaire">Nom de l'inspection :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="title" name="title">
@@ -18,7 +18,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="adress">Adresse :</label>
+                                <label for="adress" class="champs_formulaire">Adresse :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="adress" name="adress">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="start">Début de l'inspection :</label>
+                                <label for="start" class="champs_formulaire">Début de l'inspection :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="datetime-local" class="form-control" id="start" name="start">
@@ -34,7 +34,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="end">Fin de l'inspection :</label>
+                                <label for="end" class="champs_formulaire">Fin de l'inspection :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="datetime-local" class="form-control" id="end" name="end">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="nomLoca">Nom du locataire :</label>
+                                <label for="nomLoca" class="champs_formulaire">Nom du locataire :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="nomLoca" name="nomLoca">
@@ -50,7 +50,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="numLoca">Numéro du locataire :</label>
+                                <label for="numLoca" class="champs_formulaire">Numéro du locataire :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="number" class="form-control" id="numLoca" name="numLoca">

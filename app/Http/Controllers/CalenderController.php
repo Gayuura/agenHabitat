@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Inspection;
 
-class FullCalenderController extends Controller
+class CalenderController extends Controller
 {
     public function index(Request $request)
     {
@@ -17,7 +17,7 @@ class FullCalenderController extends Controller
                             ->get(['id', 'title', 'adress', 'start', 'end', 'nomLoca', 'numLoca', 'conform', 'etat']);
             return response()->json($data);
         }
-        return view('calender');
+        return view('inspections/calender');
     }
 
     public function action(Request $request)
