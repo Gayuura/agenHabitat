@@ -24,8 +24,6 @@ return new class extends Migration
             $table->year('annee_construction');
             $table->string('classe_energetique');
             $table->boolean('conformite_R2_2020');
-            $table->unsignedBigInteger('rapport_id');
-            $table->foreign('rapport_id')->references('id')->on('rapports');
             $table->timestamps();
         });
     }

@@ -1,46 +1,104 @@
-
 @extends('layout.app')
 
 @section('content')
-<!-- resources/views/inspections/show.blade.php -->
 
-<h1>Inspection {{ $inspection->libellé }} :</h1>
+    <h2 class="my-3">Détails de l'inspection : "{{ $inspection->title }}"</h2>
+    <div class="container my-5">
+        <div class="col-10">
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="titre" class="detail_inspection">Titre :</label>
+                </div>
+                <div class="col-6">
+                    <span class="detail_inspection">{{ $inspection->title }}</span>
+                </div>
+            </div>
 
-<h2>Locataire: </h2>
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="adress" class="detail_inspection">Adresse :</label>
+                </div>
+                <div class="col-6">
+                    <span class="detail_inspection">{{ $inspection->adress }}</span>
+                </div>
+            </div>
 
-@if($inspection->locataire)
-    <p><strong>Nom:</strong> {{ $inspection->locataire->nom_prenom }}</p>
-    <p><strong>Date d'entrée:</strong> {{ $inspection->locataire->date_entree }}</p>
-    <p><strong>Téléphone mobile:</strong> {{ $inspection->locataire->tel_mobile ?? 'N/A' }}</p>
-    <p><strong>Email:</strong> {{ $inspection->locataire->email ?? 'N/A' }}</p>
-    
-@else
-    <p>Aucun locataire associé à cette inspection</p>
-@endif
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="start" class="detail_inspection">Debut de l'inspection :</label>
+                </div>
+                <div class="col-6">
+                    <span class="detail_inspection">{{ \Carbon\Carbon::parse($inspection->start)->format('d/m/Y') }} à {{ \Carbon\Carbon::parse($inspection->datetime)->format('H:i') }}</span>
+                </div>
+            </div>
 
-<h2>Détails du Logement</h2>
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="end" class="detail_inspection">Fin de l'inspection :</label>
+                </div>
+                <div class="col-6">
+                    <span class="detail_inspection">{{ \Carbon\Carbon::parse($inspection->end)->format('d/m/Y') }} à {{ \Carbon\Carbon::parse($inspection->datetime)->format('H:i') }}</span>
+                </div>
+            </div>
 
-@if($inspection->logement)
-    <p><strong>Adresse:</strong> {{ $inspection->logement->adresse }}</p>
-    <p><strong>Description:</strong> {{ $inspection->logement->description }}</p>
-    <p><strong>Type de logement:</strong> {{ $inspection->logement->type_logement }}</p>
-    <p><strong>Nombre de pièces:</strong> {{ $inspection->logement->nombre_pieces }}</p>
-    <p><strong>Superficie (m²):</strong> {{ $inspection->logement->superficie_m2 }}</p>
-    <p><strong>Étage:</strong> {{ $inspection->logement->etage }}</p>
-    <p><strong>Toiture:</strong> {{ $inspection->logement->toiture }}</p>
-    <p><strong>Type de chauffage:</strong> {{ $inspection->logement->type_chauffage }}</p>
-    <p><strong>Année de construction:</strong> {{ $inspection->logement->annee_construction }}</p>
-    <p><strong>Classe énergétique:</strong> {{ $inspection->logement->classe_energetique }}</p>
-    <p><strong>Conformité R2 2020:</strong> {{ $inspection->logement->conformite_R2_2020 ? 'Oui' : 'Non' }}</p>
-    <!-- Ajoutez d'autres détails sur le logement si nécessaire -->
-@else
-    <p>Aucun logement associé à cette inspection</p>
-@endif
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="nomLoca" class="detail_inspection">Nom du locataire :</label>
+                </div>
+                <div class="col-6">
+                    <span class="detail_inspection">{{ $inspection->nomLoca }}</span>
+                </div>
+            </div>
 
-<!-- Boutons -->
-<div>
-    <a href="{{-- route('retour') --}}" class="btn btn-primary">Retour</a>
-    <a href="{{-- route('telecharger') --}}" class="btn btn-success">Télécharger</a>
-</div>
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="numLoca" class="detail_inspection">Num du locataire :</label>
+                </div>
+                <div class="col-6">
+                    <span class="detail_inspection">{{ $inspection->numLoca }}</span>
+                </div>
+            </div>
 
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="conform" class="detail_inspection">Conformité RE 2020 :</label>
+                </div>
+                <div class="col-6">
+                    <span class="detail_inspection @if($inspection->conform) text-success @else text-danger @endif">
+                        @if($inspection->conform)
+                            Conforme
+                        @else
+                            Non Conforme
+                        @endif
+                    </span>
+
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="etat" class="detail_inspection">Etat :</label>
+                </div>
+                <div class="col-6">
+                    <span class="detail_inspection">
+                        @if($inspection->etat)
+                            Effectué
+                        @else
+                            Prévu
+                        @endif
+                    </span>
+                </div>
+            </div>
+
+            <div class="row form-group justify-content-between">
+                <div class="col-6">
+                    <button type="button" class="btn_modifier">Modifier l'inspection</button>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="submit" class="btn_New_rapport">Nouveau Rapport</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 @endsection

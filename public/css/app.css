@@ -21,6 +21,9 @@
     justify-content: center;
     margin-top: 5%;
 }
+.img-icone{
+    border-radius: 50%;
+}
 .msg_send{
     color: #41A707;
     font-size: 39px;
@@ -186,7 +189,21 @@ h3{
 }
 .text-success{
     color: #126712;
+    font-weight: bold;
 }
 .text-danger{
     color: #CE1C00;
+    font-weight: bold;
+}
+#inspectionTable{
+    background-color: #CBC6C6;
+    border-radius: 40px;
+    margin-top: 2%;
+}
+#inspectionTable tr:first-child th {
+    border-top: 0;
+}
+
+#inspectionTable tr:last-child td {
+    border-bottom: 0;
 }

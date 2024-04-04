@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('rapports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('locataire_id')->constrained()->onDelete('cascade');
+            $table->foreignId('logement_id')->constrained()->onDelete('cascade');
             $table->string('signature_locataire')->nullable();
             $table->string('signature_inspecteur')->nullable();
-            $table->unsignedBigInteger('inspection_id');
-            $table->foreign('inspection_id')->references('id')->on('inspections');
             $table->timestamps();
         });
     }

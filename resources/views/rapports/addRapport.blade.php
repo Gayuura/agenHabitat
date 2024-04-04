@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="my-3">Nouveau Rapport</h2>
 <div class="container my-5">
-    <form action="{{ route('report.step.one') }}" method="post" class="section texte_noir">
+    <form action="/addRapportLoc" method="post" class="section texte_noir">
         {{ csrf_field() }}
         <h3 class="my-3">Le Locataire</h3>
         <div class="col-md-12">

@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Locataire extends Model
 {
     use HasFactory;
-
-    public function rapport()
-    {
-        return $this->belongsTo(Rapport::class);
-    }
 }

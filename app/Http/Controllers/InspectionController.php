@@ -2,124 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Inspection;
+use Illuminate\Http\Request;
 
 class InspectionController extends Controller
 {
     /**
-     * Afficher la liste des inspections.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a listing of the resource.
      */
     public function index()
     {
-        $inspections = Inspection::all();
-        return view('inspections.index', compact('inspections'));
+        $inspection = Inspection::all();
+        return view('inspections/index', compact('inspection'));
     }
 
     /**
-     * Afficher la liste des inspections.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $inspection = Inspection::with('locataire','logement')->find($id);
-   
-
-    // Vérifiez si l'inspection a des rapports associés
-    if ($inspection) {
-        
-        return view('inspections.show', compact('inspection'));
-    } else {
-        // Gérer le cas où l'inspection avec l'ID donné n'existe pas
-        // Par exemple, rediriger vers une autre page ou afficher un message d'erreur
-    }
-    }
-    
-
-    /**
-     * Afficher le formulaire de création d'une nouvelle inspection.
-     *
-     * @return \Illuminate\Http\Response
+     * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('inspections.create');
+        //
     }
 
     /**
-     * Enregistrer une nouvelle inspection.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'libellé' => 'required|string',
-            'adresse' => 'required|string',
-            'date_et_heure' => 'required|date',
-            'nomLocataire' => 'required|string',
-            'numeroLocataire' => 'required|integer',
-            'conformité' => 'required|boolean',
-            'état' => 'required|boolean',
-        ]);
-        //dd($request);
-        Inspection::create($request->except('_token'));
-
-        return redirect()->route('inspections.index')->with('success', 'Inspection créée avec succès.');
+        //
     }
 
     /**
-     * Afficher le formulaire d'édition d'une inspection.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Display the specified resource.
      */
-    public function edit($id)
+    public function show($id)
     {
         $inspection = Inspection::findOrFail($id);
-        return view('inspections.edit', compact('inspection'));
+        return view('inspections/show', compact('inspection'));
     }
 
     /**
-     * Mettre à jour une inspection existante.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Show the form for editing the specified resource.
      */
-    public function update(Request $request, $id)
+    public function edit(Inspection $inspection)
     {
-        $request->validate([
-            'libellé' => 'required|string',
-            'adresse' => 'required|string',
-            'date_et_heure' => 'required|date',
-            'nomLocataire' => 'required|string',
-            'numeroLocataire' => 'required|integer',
-            'conformité' => 'required|boolean',
-            'état' => 'required|boolean',
-        ]);
-
-        $inspection = Inspection::findOrFail($id);
-        $inspection->update($request->all());
-
-        return redirect()->route('inspections.index')->with('success', 'Inspection mise à jour avec succès.');
+        //
     }
 
     /**
-     * Supprimer une inspection existante.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Update the specified resource in storage.
      */
-    public function destroy($id)
+    public function update(Request $request, Inspection $inspection)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Inspection $id)
     {
         $inspection = Inspection::findOrFail($id);
         $inspection->delete();
 
-        return redirect()->route('inspections.index')->with('success', 'Inspection supprimée avec succès.');
+        return redirect()->route('inspection.index')->with('success', 'Inspection supprimée avec succès.');
     }
 }
