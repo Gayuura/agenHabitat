@@ -22,6 +22,7 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+        //dd(Hash::make('agen1234'));
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -34,7 +35,7 @@ class LoginController extends Controller
         ])->onlyInput('email');
     }
 
-    public function logout(Request $request): RedirectResponse
+    public function logout(Request $request)
     {
         Auth::logout();
     

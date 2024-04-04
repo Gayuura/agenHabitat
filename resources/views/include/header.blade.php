@@ -5,13 +5,12 @@
     </div>
     <div class="col-6">
       <div class="d-flex flex-column align-items-end">
-        @guest
-        <form action=" {{route('logout')}}">
-          <button type="submit" class="btn_deconnexion">Déconnexion</button>
-        </form>
-        @endguest
         @auth
         <span class="username">{{ Auth::user()->name }}</span>
+        <form action=" {{route('logout')}}" method="post">
+          @csrf
+          <button type="submit" class="btn_deconnexion">Déconnexion</button>
+        </form>
         @endauth       
       </div>
     </div>

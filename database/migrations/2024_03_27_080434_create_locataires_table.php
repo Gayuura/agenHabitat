@@ -17,6 +17,8 @@ return new class extends Migration
             $table->date('date_entree');
             $table->string('tel_mobile')->nullable();
             $table->string('email')->nullable();
+            $table->unsignedBigInteger('rapport_id');
+            $table->foreign('rapport_id')->references('id')->on('rapports');
             $table->timestamps();
         });
     }

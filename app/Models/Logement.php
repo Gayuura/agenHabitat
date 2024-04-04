@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Logement extends Model
 {
     use HasFactory;
+
+    public function rapport()
+    {
+        return $this->belongsTo(Rapport::class);
+    }
 }

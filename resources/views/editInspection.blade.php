@@ -1,11 +1,11 @@
 @extends('layout.app')
 
 @section('content')
-    <h2 class="my-3">Inspection "    "</h2>
+    <h2 class="my-3">Inspection {{}}</h2>
     <div class="container my-5">
         <div class="col-md-10">
             <form action="/editInspection" method="post" class="section texte_noir">
-                {{ csrf_field() }}
+                @csrf
 
                 <div class="row form-group">
                     <div class="col-5">
