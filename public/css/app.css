@@ -79,6 +79,24 @@
     margin-left: 30%;
     margin-top: 5%;
 }
+.btn_modifier{
+    background-color: white;
+    color: black;
+    width: auto;
+    height: 41px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 20%;
+}
+.btn_New_rapport{
+    background-color: #365422;
+    color: white;
+    width: auto;
+    height: 41px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 20%;
+}
 .icone{
     border-radius: 256px;
     margin-top: 10px;
@@ -118,12 +136,6 @@ h3{
     margin-left: 15%;
     padding: 5%;
 }
-.form-group{
-    font-size: 25px;
-    font-family: 'Segoe UI';
-    font-weight: bold;
-    padding: 10px;
-}
 .form-control{
     width: 295px;
     border-radius: 25px;
@@ -135,4 +147,46 @@ h3{
 }
 .texte_noir{
     color: black;
+}
+#calendar {
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #CBC6C6;
+    z-index: 1;
+    position: relative;
+    max-width: 100%;
+}
+#event_form {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #D4D0D5;
+    border-radius: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 5%;
+    max-width: 600px;
+    width: 90%;
+}
+#createInspectionBtn,#annulerBtn {
+    margin-top: 15%;
+}
+.champs_formulaire{
+    font-size: 20px;
+    font-family: 'Segoe UI';
+    padding: 10px;
+}
+.detail_inspection{
+    font-size: 25px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-style: italic;
+}
+.text-success{
+    color: #126712;
+}
+.text-danger{
+    color: #CE1C00;
 }
