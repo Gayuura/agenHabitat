@@ -60,11 +60,13 @@ class InspectionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Inspection $id)
+    public function destroy($id)
     {
         $inspection = Inspection::findOrFail($id);
         $inspection->delete();
-
+    
         return redirect()->route('inspection.index')->with('success', 'Inspection supprimée avec succès.');
     }
+    
+
 }

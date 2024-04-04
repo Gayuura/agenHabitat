@@ -71,7 +71,7 @@
                                     <a href="/inspection/{{ $inspection->id }}/edit">
                                         <img src="{{ asset('images/Icone_Edition.png') }}" class="img-icone img-fluid" alt="Modifier l'inspection">
                                     </a>
-                                    <a href="/inspection/{{ $inspection->id }}/delete" onclick="openDeleteConfirmationModal({{ $inspection->id }})">
+                                    <a href="/inspection/" onclick="openDeleteConfirmationModal({{ $inspection->id }})">
                                         <img src="{{ asset('images/Icone_Supprimer.png') }}" class="img-icone img-fluid" alt="Supprimer l'inspection">
                                     </a>
                                 @endif
@@ -84,7 +84,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Inclure la bibliothèque DataTables -->
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -129,6 +128,31 @@
             filterTable();
         });
     });
+
+    // Fonction pour ouvrir la boîte de dialogue modale de confirmation de suppression
+    function openDeleteConfirmationModal(inspectionId) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer cette inspection ?")) {
+            // Envoyer une requête DELETE à la route de suppression de l'inspection avec l'ID correspondant
+            $.ajax({
+                url: '/inspection/' + inspectionId + '/delete',
+                type: 'DELETE',
+                success: function(response) {
+                    // Actualiser la page ou effectuer toute autre action nécessaire après la suppression
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // Gérer les erreurs en cas de problème lors de la suppression
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    }
+
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 </script>
 
 @endsection
