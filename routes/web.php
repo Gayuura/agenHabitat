@@ -2,18 +2,27 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CalenderController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InspectionController;
 
+use App\Http\Controllers\RapportController;
+use App\Mail\ContactMail;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
 
 /*
 Route::get('/', function () {
     return view('connexion');
 });*/
+
 Route::get('/contact', function () {
     return view('contact/contact');
 });
+
+Route::post('/contact' , [ContactController::class, 'store'])->name('contact.submit');
 Route::get('/sended', function () {
     return view('contact/sended');
 });

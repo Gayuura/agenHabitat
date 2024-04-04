@@ -8,7 +8,7 @@
         background-position: center;
     }
 </style>
-    
+
 
 <a href="{{ url('/') }}">
   <img src='{{ asset("images/logo.png") }}' alt="Logo Agen Habitat" class="img-logo img-fluid">
@@ -21,7 +21,7 @@
           <h1 class="mb-4 text-center">Connectez-vous</h1>
           <form action="{{ route('login') }}" method="post" class="section">
             @csrf
-            
+
             <div class="mb-3 field">
               <label for="username" class="form-label">Email d'utilisateur</label>
               <input name="email" type="text" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur"  value="{{ old('email') }}" required>
@@ -31,7 +31,7 @@
                   <span class="text-danger">{{ $message }}</span>
               @enderror
           </div>
-            
+
             <div class="mb-3 field">
               <label for="password" class="form-label">Mot de passe</label>
               <input name="password" type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe"  value="{{ old('password') }}" required>
