@@ -56,7 +56,14 @@
 
                 <input type="hidden" name="id" value="{{ $inspection->id }}">
 
-                <button type="submit" class="btn btn-success btn_enregistrer">Enregistrer</button>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn_retour" onclick="history.back()">Retour</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn_enregistrer">Enregistrer</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

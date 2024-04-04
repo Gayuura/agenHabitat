@@ -91,11 +91,20 @@
             </div>
 
             <div class="row form-group justify-content-between">
-                <div class="col-6">
-                    <button type="button" class="btn_modifier">Modifier l'inspection</button>
+                <div class="col-4">
+                    <button type="button" class="btn_retour" onclick="history.back()">Retour</button>
                 </div>
-                <div class="col-6 text-right">
-                    <button type="submit" class="btn_New_rapport">Nouveau Rapport</button>
+                    
+                <div class="col-4">
+                    <div class="btn_modifier text-center d-flex align-items-center justify-content-center btn_modifier">
+                        <a href="{{ route('inspection.edit', $inspection->id) }}" class="text-dark text-decoration-none">Modifier l'inspection</a>
+                    </div>
+                </div>
+
+                <div class="col-4 text-right">
+                    <div class="btn_modifier text-center d-flex align-items-center justify-content-center btn_New_rapport">
+                        <a href="#" class="text-white text-decoration-none texte_blanc">Nouveau Rapport</a>
+                    </div>
                 </div>
             </div>
 

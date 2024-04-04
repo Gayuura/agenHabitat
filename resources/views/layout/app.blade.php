@@ -46,7 +46,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-center text-decoration-none text-white" href="{{ url('/calender') }}">
                                 <img src="{{ asset('images/Icone_Calendrier.png') }}" alt="Calendrier" class="icone mb-2">
-                                <span class="d-block">Calendrier des tournées</span>
+                                <span class="d-block">Planning</span>
                             </a>
                         </li>
                         <li class="nav-item">

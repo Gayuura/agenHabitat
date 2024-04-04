@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <h2 class="my-3">Calendrier des tournées</h2>
+    <h2 class="my-3">Planning</h2>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -8,6 +8,7 @@
                 <!-- Formulaire pour créer une nouvelle inspection -->
                 <div id="event_form" style="display: none;">
                     <form>
+                        <div class="col-12 text-center texte_noir titre">Programmation d'une inspection</div>
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label for="title" class="champs_formulaire">Nom de l'inspection :</label>
