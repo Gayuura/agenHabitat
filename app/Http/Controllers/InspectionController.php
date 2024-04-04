@@ -34,9 +34,10 @@ class InspectionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Inspection $inspection)
+    public function show($id)
     {
-        //
+        $inspection = Inspection::findOrFail($id);
+        return view('inspections/inspection', compact('inspection'));
     }
 
     /**

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CalenderController;
+use App\Http\Controllers\InspectionController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,6 +30,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('calender',[CalenderController::class, 'index']);
 Route::post('calender/action', [CalenderController::class, 'action']);
+
+Route::get('/inspection/{id}', [InspectionController::class, 'show'])->name('inspection.show');
 
 /*Route::get('/dashboard', function () {
     return view('dashboard');

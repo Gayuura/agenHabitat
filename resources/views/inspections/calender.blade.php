@@ -187,7 +187,7 @@
                 eventClick: function(event) {
                     var eventId = event.id;
                     var eventName = event.title;
-                    window.location.href = "/inspection/" + eventId + "?name=" + encodeURIComponent(eventName);
+                    window.location.href = "/inspection/" + eventId;
                 }
             });
 

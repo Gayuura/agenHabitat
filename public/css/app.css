@@ -79,6 +79,24 @@
     margin-left: 30%;
     margin-top: 5%;
 }
+.btn_modifier{
+    background-color: white;
+    color: black;
+    width: auto;
+    height: 41px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 20%;
+}
+.btn_New_rapport{
+    background-color: #365422;
+    color: white;
+    width: auto;
+    height: 41px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 20%;
+}
 .icone{
     border-radius: 256px;
     margin-top: 10px;
@@ -159,4 +177,16 @@ h3{
     font-size: 20px;
     font-family: 'Segoe UI';
     padding: 10px;
+}
+.detail_inspection{
+    font-size: 25px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-style: italic;
+}
+.text-success{
+    color: #126712;
+}
+.text-danger{
+    color: #CE1C00;
 }
