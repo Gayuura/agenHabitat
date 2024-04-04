@@ -4,7 +4,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\InspectionController;
 
-use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\RapportController;
 use Illuminate\Support\Facades\Route;
 
