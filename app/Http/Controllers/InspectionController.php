@@ -44,18 +44,38 @@ class InspectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Inspection $inspection)
+    public function edit($id)
     {
-        //
+        $inspection = Inspection::findOrFail($id);
+        return view('inspections.edit', compact('inspection'));
     }
 
     /**
      * Update the specified resource in storage.
-     */
-    public function update(Request $request, Inspection $inspection)
+     */    
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'start' => 'required|date',
+            'adress' => 'required|string|max:255',
+            'nomLoca' => 'required|string|max:255',
+            'numLoca' => 'required|string|max:255',
+        ]);
+    
+        $inspection = Inspection::findOrFail($id);
+        $inspection->title = $validatedData['title'];
+        $inspection->start = $validatedData['start'];
+        $inspection->adress = $validatedData['adress'];
+        $inspection->nomLoca = $validatedData['nomLoca'];
+        $inspection->numLoca = $validatedData['numLoca'];
+    
+        $inspection->save();
+    
+        return redirect()->route('inspection.index')->with('success', 'Inspection mise à jour avec succès.');
     }
+    
+    
 
     /**
      * Remove the specified resource from storage.

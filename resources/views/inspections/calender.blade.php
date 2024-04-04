@@ -56,16 +56,6 @@
                                 <input type="number" class="form-control" id="numLoca" name="numLoca">
                             </div>
                         </div>
-                        <div class="row form-check d-flex">
-                            <div class="col-md-6">
-                                <input type="checkbox" class="form-check-input" id="conform" name="conform">
-                                <label class="form-check-label" for="conform">Conforme</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="checkbox" class="form-check-input" id="etat" name="etat">
-                                <label class="form-check-label" for="etat">État</label>
-                            </div>
-                        </div>
                         <div class="row form-group justify-content-between">
                             <div class="col-md-6">
                                 <button type="button" id="createInspectionBtn" class="btn btn-primary">Créer l'inspection</button>
@@ -188,6 +178,11 @@
                     var eventId = event.id;
                     var eventName = event.title;
                     window.location.href = "/inspection/" + eventId;
+                },
+                dayRender: function (date, cell) {
+                    if (date.isSameOrBefore(moment(), 'day')) {
+                        cell.addClass('past-day');
+                    }
                 }
             });
 

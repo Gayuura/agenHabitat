@@ -160,6 +160,9 @@ h3{
     position: relative;
     max-width: 100%;
 }
+.past-day {
+    background-color: #c4b0b0;
+}
 #event_form {
     z-index: 2;
     position: absolute;

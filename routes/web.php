@@ -42,7 +42,9 @@ Route::post('calender/action', [CalenderController::class, 'action']);
 
 Route::get('inspection',[InspectionController::class, 'index'])->name('inspection.index');
 Route::get('/inspection/{id}', [InspectionController::class, 'show'])->name('inspection.show');
-Route::delete('/inspection/{id}/delete', [InspectionController::class,'destroy'])->name('inspection.destroy'); // Supprimer une inspection existante
+Route::delete('/inspection/{id}/delete', [InspectionController::class,'destroy'])->name('inspection.destroy');
+Route::get('/inspection/{inspection}/edit', [InspectionController::class, 'edit'])->name('inspection.edit');
+Route::put('/inspection/{inspection}', [InspectionController::class, 'update'])->name('inspection.update');
 
 
 /*Route::get('/dashboard', function () {

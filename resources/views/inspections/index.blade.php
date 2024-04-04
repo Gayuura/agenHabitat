@@ -68,9 +68,10 @@
                                     <a href="/inspection/{{ $inspection->id }}/create">
                                         <img src="{{ asset('images/Icone_Rapport.png') }}" class="img-icone img-fluid" alt="Créer un rapport">
                                     </a>
-                                    <a href="/inspection/{{ $inspection->id }}/edit">
+                                    <a href="{{ route('inspection.edit', $inspection->id) }}">
                                         <img src="{{ asset('images/Icone_Edition.png') }}" class="img-icone img-fluid" alt="Modifier l'inspection">
                                     </a>
+
                                     <a href="/inspection/" onclick="openDeleteConfirmationModal({{ $inspection->id }})">
                                         <img src="{{ asset('images/Icone_Supprimer.png') }}" class="img-icone img-fluid" alt="Supprimer l'inspection">
                                     </a>
