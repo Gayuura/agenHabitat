@@ -218,7 +218,6 @@ h3{
 #inspectionTable tr:first-child th {
     border-top: 0;
 }
-
 #inspectionTable tr:last-child td {
     border-bottom: 0;
 }

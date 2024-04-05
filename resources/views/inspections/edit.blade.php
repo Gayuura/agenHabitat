@@ -19,10 +19,19 @@
 
                 <div class="row form-group">
                     <div class="col-6">
-                        <label for="subject" class="champs_formulaire">Debut de l'inspection : </label>
+                        <label for="subject" class="champs_formulaire">Début de l'inspection : </label>
                     </div>
                     <div class="col-6">
-                        <input type="text" class="form-control" name="start" value="{{ $inspection->start }}">
+                        <input type="datetime-local" class="form-control" name="start" value="{{ $inspection->start }}">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label for="subject" class="champs_formulaire">Fin de l'inspection : </label>
+                    </div>
+                    <div class="col-6">
+                        <input type="datetime-local" class="form-control" name="end" value="{{ $inspection->end }}">
                     </div>
                 </div>
 

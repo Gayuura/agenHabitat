@@ -58,6 +58,7 @@ class InspectionController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'start' => 'required|date',
+            'end'   => 'required|date',
             'adress' => 'required|string|max:255',
             'nomLoca' => 'required|string|max:255',
             'numLoca' => 'required|string|max:255',
@@ -66,6 +67,7 @@ class InspectionController extends Controller
         $inspection = Inspection::findOrFail($id);
         $inspection->title = $validatedData['title'];
         $inspection->start = $validatedData['start'];
+        $inspection->end = $validatedData['end'];
         $inspection->adress = $validatedData['adress'];
         $inspection->nomLoca = $validatedData['nomLoca'];
         $inspection->numLoca = $validatedData['numLoca'];

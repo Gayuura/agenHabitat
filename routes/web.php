@@ -13,11 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 
-/*
-Route::get('/', function () {
-    return view('connexion');
-});*/
-
 Route::get('/contact', function () {
     return view('contact/contact');
 });

@@ -1,14 +1,14 @@
 @extends('layout.app')
 @section('content')
-    <h2 class="my-3">Planning</h2>
+    <h2 class="my-3">Calendrier des tournées</h2>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div id="calendar"></div>
-                <!-- Formulaire pour créer une nouvelle inspection -->
+
                 <div id="event_form" style="display: none;">
                     <form>
-                        <div class="col-12 text-center texte_noir titre">Programmation d'une inspection</div>
+                        <div class="titre text-center">Programmation d'une inspection</div>
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label for="title" class="champs_formulaire">Nom de l'inspection :</label>
@@ -132,7 +132,7 @@
                         {
                             calendar.fullCalendar('refetchEvents');
                             toastr.success('Inspection mise à jour !', '', {
-                                positionClass: 'toast-bottom-right' // Positionner la notification en bas à droite
+                                positionClass: 'toast-bottom-right'
                             });
                         }
                     })
@@ -170,7 +170,7 @@
                         {
                             calendar.fullCalendar('refetchEvents');
                             toastr.success('Inspection mise à jour !', '', {
-                                positionClass: 'toast-bottom-right' // Positionner la notification en bas à droite
+                                positionClass: 'toast-bottom-right'
                             });
                         }
                     })
@@ -208,10 +208,10 @@
                     success: function(data) {
                         calendar.fullCalendar('refetchEvents');
                         toastr.success('Inspection créée !', '', {
-                            positionClass: 'toast-bottom-right' // Positionner la notification en bas à droite
+                            positionClass: 'toast-bottom-right'
                         });
                         $('#event_form').hide();
-                        $('#eventForm')[0].reset();
+                        $('#event_Form')[0].reset();
                     }
                 });
             });

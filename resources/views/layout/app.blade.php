@@ -34,13 +34,12 @@
         </style>
     </head>
     <body >
-        <!-- Inclusion du header -->
         @include('include.header')
         
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
-                <!-- Code pour le menu latéral gauche -->
+                <!-- menu latéral gauche -->
                 <div class="sidebar d-flex">
                     <ul class="nav flex-column justify-content-between">
                         <li class="nav-item">

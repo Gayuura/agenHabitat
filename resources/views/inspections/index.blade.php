@@ -29,7 +29,8 @@
                     <thead>
                         <tr>
                             <th style="cursor: pointer;">Nom de l'inspection</th>
-                            <th style="cursor: pointer;">Debut de l'inspection</th>
+                            <th style="cursor: pointer;">Début de l'inspection</th>
+                            <th style="cursor: pointer;">Fin de l'inspection</th>
                             <th style="cursor: pointer;">Adresse</th>
                             <th style="cursor: pointer;">Nom du Locataire</th>
                             <th>Numéro du Locataire</th>
@@ -45,7 +46,8 @@
                                 <a href="/inspection/{{ $inspection->id }}" class="text-dark text-decoration-none">{{ $inspection->title }}</a>
                             </td>
 
-                            <td>{{ $inspection->start }}</td>
+                            <td>{{ date('Y/m/d à H:i', strtotime($inspection->start)) }}</td>
+                            <td>{{ date('Y/m/d à H:i', strtotime($inspection->end)) }}</td>
                             <td>{{ $inspection->adress }}</td>
                             <td>{{ $inspection->nomLoca }}</td>
                             <td>{{ $inspection->numLoca }}</td>
@@ -86,24 +88,24 @@
     </div>
 </div>
 
-<!-- Inclure la bibliothèque DataTables -->
+
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 <script>
     $(document).ready(function() {
         // Initialisation de la table avec DataTables
         $('#inspectionTable').DataTable({
-            searching: false, // Activer la fonctionnalité de recherche
-            paging: false, // Activer la pagination
-            ordering: true, // Activer le tri
-            orderCellsTop: false, // Placer les boutons de tri au-dessus de la table
+            searching: false,
+            paging: false,
+            ordering: true,
+            orderCellsTop: false,
             fixedHeader: false,
             columnDefs: [
-                { targets: [4, 7], orderable: false }
+                { targets: [5, 8], orderable: false }
             ]
         });
         
-        // Fonction de filtrage
+        // filtrage
         function filterTable() {
             var filterTitle = $('#filterTitle').val().toLowerCase();
             var filterNomLocataire = $('#filterNomLocataire').val().toLowerCase();
@@ -130,19 +132,16 @@
         });
     });
 
-    // Fonction pour ouvrir la boîte de dialogue modale de confirmation de suppression
+    // Pop up pour confirmation de suppression
     function openDeleteConfirmationModal(inspectionId) {
         if (confirm("Êtes-vous sûr de vouloir supprimer cette inspection ?")) {
-            // Envoyer une requête DELETE à la route de suppression de l'inspection avec l'ID correspondant
             $.ajax({
                 url: '/inspection/' + inspectionId + '/delete',
                 type: 'DELETE',
                 success: function(response) {
-                    // Actualiser la page ou effectuer toute autre action nécessaire après la suppression
                     location.reload();
                 },
                 error: function(xhr, status, error) {
-                    // Gérer les erreurs en cas de problème lors de la suppression
                     console.error(xhr.responseText);
                 }
             });
