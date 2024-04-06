@@ -19,14 +19,15 @@
             @if ($tournee->isEmpty())
                 <p>Aucune tournée trouvée.</p>
             @else
-                <table class="table" id="tourneeTable">
+                <table class="table text-center" id="tourneeTable">
                     <thead>
                         <tr>
                             <th style="cursor: pointer;">Nom de la tournée</th>
                             <th style="cursor: pointer;">Début de la tournée</th>
                             <th style="cursor: pointer;">Fin de la tournée</th>
                             <th style="cursor: pointer;">Nombre d'inspections</th>
-                            <th></th>
+                            <th style="cursor: pointer;">État</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,21 +36,29 @@
                             <td>
                                 <a href="/tournee/{{ $tournee->id }}/inspection" class="text-dark text-decoration-none">{{ $tournee->title }}</a>
                             </td>
-
                             <td>{{ date('Y/m/d à H:i', strtotime($tournee->start)) }}</td>
                             <td>{{ date('Y/m/d à H:i', strtotime($tournee->end)) }}</td>
                             <td>{{ $tournee->inspections->count() }}</td>
                             <td>
-                                <a href="{{ route('inspection.create', $tournee->id) }}">
-                                    <img src="{{ asset('images/Icone_Inspection.png') }}" class="img-icone img-fluid" alt="Créer une inspection">
-                                </a>
-                                <a href="{{ route('tournee.edit', $tournee->id) }}">
-                                    <img src="{{ asset('images/Icone_Edition.png') }}" class="img-icone img-fluid" alt="Modifier la tournée">
-                                </a>
+                                @if ($tournee->etatGlobal === 'Terminé')
+                                    <span class="text-success">{{ $tournee->etatGlobal }}</span>
+                                @else
+                                    <span class="fw-bold">{{ $tournee->etatGlobal }}</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($tournee->etatGlobal === 'Prévu')
+                                    <a href="{{ route('inspection.create', $tournee->id) }}">
+                                        <img src="{{ asset('images/Icone_Inspection.png') }}" class="img-icone img-fluid" alt="Créer une inspection">
+                                    </a>
+                                    <a href="{{ route('tournee.edit', $tournee->id) }}">
+                                        <img src="{{ asset('images/Icone_Edition.png') }}" class="img-icone img-fluid" alt="Modifier la tournée">
+                                    </a>
 
-                                <a href="#" onclick="openDeleteConfirmationModal({{ $tournee->id }})">
-                                    <img src="{{ asset('images/Icone_Supprimer.png') }}" class="img-icone img-fluid" alt="Supprimer la tournée">
-                                </a>
+                                    <a href="#" onclick="openDeleteConfirmationModal({{ $tournee->id }})">
+                                        <img src="{{ asset('images/Icone_Supprimer.png') }}" class="img-icone img-fluid" alt="Supprimer la tournée">
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -73,7 +82,7 @@
             orderCellsTop: false,
             fixedHeader: false,
             columnDefs: [
-                { targets: [4], orderable: false }
+                { targets: [5], orderable: false }
             ]
         });
         

@@ -82,6 +82,11 @@
     width: 185px;
     height: 40px;
     line-height: 40px;
+    color: white;
+}
+.btn_New_rapport:hover{
+    background-color: #466d2b;
+    color: white;
 }
 .btn_creer{
     background-color: #4b7430;
@@ -90,6 +95,12 @@
     margin-top: 20%;
     width: 185px;
     height: 40px;
+    line-height: 40px;
+    color: rgb(255, 255, 255);
+}
+.btn_creer:hover{
+    background-color: #466d2b;
+    color: rgb(255, 255, 255);
 }
 .btn_signer{
     width: 215px;
@@ -107,6 +118,25 @@
     width: 185px;
     height: 40px;
     line-height: 40px;
+    color: black;
+}
+.btn_modifier:hover{
+    background-color: rgb(219, 214, 214);
+    color: black;
+}
+.btn_delete{
+    background-color: rgb(172, 0, 0);
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 20%;
+    width: 185px;
+    height: 40px;
+    line-height: 40px;
+    color: black;
+}
+.btn_delete:hover{
+    color: black;
+    background-color: rgb(255, 0, 0);
 }
 .btn_retour,.btn_retour_js{
     background-color: rgb(206, 201, 201);

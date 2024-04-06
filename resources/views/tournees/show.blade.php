@@ -16,10 +16,10 @@
 
             <div class="row form-group">
                 <div class="col-6">
-                    <label for="start" class="details">Debut de la tournée :</label>
+                    <label for="start" class="details">Début de la tournée :</label>
                 </div>
                 <div class="col-6">
-                    <span class="details">{{ $tournee->start }}</span>
+                    <span class="details">{{ date('d/m/Y à H:i', strtotime($tournee->start)) }}</span>
                 </div>
             </div>
 
@@ -28,25 +28,26 @@
                     <label for="end" class="details">Fin de la tournée :</label>
                 </div>
                 <div class="col-6">
-                    <span class="details">{{ $tournee->end }}</span>
+                    <span class="details">{{ date('d/m/Y à H:i', strtotime($tournee->end)) }}</span>
                 </div>
             </div>
 
             <div class="row form-group justify-content-between">
-                <div class="col-4">
+                <div class="col-4 text-right">
                     <div class="text-center d-flex">
-                        <a href="{{ route('tournee.index', $tournee->id) }}" class="text-dark text-decoration-none btn_retour">Retour aux tournées</a>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="text-center d-flex">
-                        <a href="{{ route('tournee.edit', $tournee->id) }}" class="text-dark text-decoration-none btn_modifier">Modifier la tournée</a>
+                        <a href="{{ route('inspection.create', 'tournee_id') }}" class="text-decoration-none btn_creer">Créer une Inspection</a>
                     </div>
                 </div>
 
-                <div class="col-4 text-right">
+                <div class="col-4">
                     <div class="text-center d-flex">
-                        <a href="{{ route('inspection.create', 'tournee_id') }}" class="text-white text-decoration-none texte_blanc btn_New_rapport">Créer une Inspection</a>
+                        <a href="{{ route('tournee.edit', $tournee->id) }}" class="text-decoration-none btn_modifier">Modifier la tournée</a>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="text-center d-flex">
+                        <a href="{{ route('tournee.index', $tournee->id) }}" class="text-dark text-decoration-none btn_retour">Retour aux tournées</a>
                     </div>
                 </div>
             </div>

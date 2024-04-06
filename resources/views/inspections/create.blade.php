@@ -62,7 +62,7 @@
                             <button type="submit" class="btn_creer">Créer l'inspection</button>
                         </div>
                         <div class="col-6">
-                            <button type="button" class="btn_retour_js" onclick="history.back()">Retour</button>
+                            <button type="button" class="btn_retour_js" onclick="history.back()">Annuler</button>
                         </div>
                     </div>
                 </form>

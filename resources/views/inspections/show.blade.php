@@ -25,10 +25,10 @@
 
             <div class="row form-group">
                 <div class="col-6">
-                    <label for="start" class="details">Debut de l'inspection :</label>
+                    <label for="start" class="details">Début de l'inspection :</label>
                 </div>
-                <div class="col-6">
-                    <span class="details">{{ $inspection->start }}</span>
+                <div class="col-6"> 
+                    <span class="details">{{ date('d/m/Y à H:i', strtotime($inspection->start)) }}</span>
                 </div>
             </div>
 
@@ -36,8 +36,8 @@
                 <div class="col-6">
                     <label for="end" class="details">Fin de l'inspection :</label>
                 </div>
-                <div class="col-6">
-                    <span class="details">{{ $inspection->end }}</span>
+                <div class="col-6"> 
+                    <span class="details">{{ date('d/m/Y à H:i', strtotime($inspection->end)) }}</span>
                 </div>
             </div>
 
@@ -87,18 +87,17 @@
             </div>
 
             <div class="row form-group justify-content-between">
+                @if (!$inspection->etat)
+                    <div class="col-4 text-center d-flex">
+                        <a href="{{ route('report.form', $inspection->id) }}" class="text-decoration-none btn_New_rapport">Nouveau Rapport</a>
+                    </div>
+                    <div class="col-4 text-center d-flex">
+                        <a href="{{ route('inspection.edit', $inspection->id) }}" class="text-decoration-none btn_modifier">Modifier l'inspection</a>
+                    </div>
+                @endif
                 <div class="col-4 text-center d-flex">
                     <a href="{{ route('Insptournee.index', $tournee->id) }}" class="text-dark text-decoration-none btn_retour">Retour aux inspections</a>
                 </div>
-                @if (!$inspection->etat)
-                    <div class="col-4 text-center d-flex">
-                        <a href="{{ route('inspection.edit', $inspection->id) }}" class="text-dark text-decoration-none btn_modifier">Modifier l'inspection</a>
-                    </div>
-
-                    <div class="col-4 text-center d-flex">
-                        <a href="{{ route('report.form', $inspection->id) }}" class="text-white text-decoration-none btn_New_rapport">Nouveau Rapport</a>
-                    </div>
-                @endif
             </div>
 
         </div>

@@ -25,7 +25,7 @@
             @if ($inspection->isEmpty())
                 <p>Aucune inspection trouvée.</p>
             @else
-                <table class="table" id="inspectionTable">
+                <table class="table text-center" id="inspectionTable">
                     <thead>
                         <tr>
                             <th style="cursor: pointer;">Nom de l'inspection</th>
