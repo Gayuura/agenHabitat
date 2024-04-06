@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <h2 class="my-3">Liste des Inspections</h2>
+    <h2 class="my-3">Liste de toutes les inspections</h2>
     <div class="row">
         <div class="col-md-10">
             <div class="row mb-3">

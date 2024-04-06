@@ -47,7 +47,7 @@
                                     <img src="{{ asset('images/Icone_Edition.png') }}" class="img-icone img-fluid" alt="Modifier la tournée">
                                 </a>
 
-                                <a href="#" onclick="openDeleteConfirmationModal(event, {{ $tournee->id }})">
+                                <a href="#" onclick="openDeleteConfirmationModal({{ $tournee->id }})">
                                     <img src="{{ asset('images/Icone_Supprimer.png') }}" class="img-icone img-fluid" alt="Supprimer la tournée">
                                 </a>
                             </td>
