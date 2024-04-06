@@ -23,6 +23,11 @@ return new class extends Migration
             $table->boolean('etat');
             $table->timestamps();
         });
+
+        Schema::table('inspections', function (Blueprint $table) {
+            $table->unsignedBigInteger('tournee_id')->nullable();
+            $table->foreign('tournee_id')->references('id')->on('tournees')->onDelete('set null');
+        });
     }
 
     /**

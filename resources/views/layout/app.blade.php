@@ -30,11 +30,12 @@
                 background-size: cover;
                 background-position: center;
                 height: 100vh;
+                padding-top: 180px;
             }
         </style>
+        @include('include.header')
     </head>
     <body >
-        @include('include.header')
         
     <div class="container-fluid">
         <div class="row">
@@ -43,20 +44,26 @@
                 <div class="sidebar d-flex">
                     <ul class="nav flex-column justify-content-between">
                         <li class="nav-item">
-                            <a class="nav-link text-center text-decoration-none text-white" href="{{ url('/calender') }}">
-                                <img src="{{ asset('images/Icone_Calendrier.png') }}" alt="Calendrier" class="icone mb-2">
-                                <span class="d-block">Planning</span>
+                            <a class="nav-link text-center text-decoration-none text-white" href="{{ url('/') }}">
+                                <img src="{{ asset('images/Onglet_Calendrier.png') }}" alt="Calendrier" class="icone mb-2">
+                                <span class="d-block">Calendrier</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-center text-decoration-none text-white" href="{{ url('/inspection') }}">
-                                <img src="{{ asset('images/Icone_Inspection.png') }}" alt="Inspections" class="icone mb-2">
-                                <span class="d-block">Liste des Inspections</span>
+                            <a class="nav-link text-center text-decoration-none text-white" href="{{ url('/tournee') }}">
+                                <img src="{{ asset('images/Onglet_Tournee.png') }}" alt="Tournées" class="icone mb-2">
+                                <span class="d-block">Liste des Tournées</span>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-center text-decoration-none text-white" href="{{ route('inspections.all') }}">
+                            <img src="{{ asset('images/Onglet_Inspection.png') }}" alt="Inspections" class="icone mb-2">
+                            <span class="d-block">Liste des Inspections</span>
+                        </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-center text-decoration-none text-white" href="{{ url('/contact') }}">
-                                <img src="{{ asset('images/Icone_Contact.png') }}" alt="Contact" class="icone mb-2">
+                                <img src="{{ asset('images/Onglet_Contact.png') }}" alt="Contact" class="icone mb-2">
                                 <span class="d-block">Contact</span>
                             </a>
                         </li>

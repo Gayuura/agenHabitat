@@ -67,10 +67,10 @@
 
                 <div class="row">
                     <div class="col-6">
-                        <button type="button" class="btn_retour" onclick="history.back()">Retour</button>
+                        <button type="submit" class="btn_enregistrer">Enregistrer</button>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn_enregistrer">Enregistrer</button>
+                        <button type="button" class="btn_retour_js" onclick="history.back()">Annuler</button>
                     </div>
                 </div>
             </form>

@@ -3,56 +3,72 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inspection;
+use App\Models\Tournee;
 use Illuminate\Http\Request;
 
 class InspectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function allInspections()
     {
         $inspection = Inspection::all();
-        return view('inspections/index', compact('inspection'));
+        return view('inspections.all', compact('inspection'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index($tournee_id)
     {
-        //
+        $tournee = Tournee::findOrFail($tournee_id);
+        $inspection = $tournee->inspections;
+    
+        return view('inspections.index', compact('inspection', 'tournee'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function create($tournee_id)
+    {
+        return view('inspections.create', compact('tournee_id'));
+    }
+
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'adress' => 'required',
+            'start' => 'required|date',
+            'end' => 'required|date|after:start',
+            'nomLoca' => 'required',
+            'numLoca' => 'required|numeric',
+        ]);
+    
+        $tournee_id = $request->tournee_id;
+        $tournee = Tournee::findOrFail($tournee_id);
+    
+        $inspection = $tournee->inspections()->create([
+            'title' => $validatedData['title'],
+            'adress' => $validatedData['adress'],
+            'start' => $validatedData['start'],
+            'end' => $validatedData['end'],
+            'nomLoca' => $validatedData['nomLoca'],
+            'numLoca' => $validatedData['numLoca'],
+            'conform' => $request->has('conform'),
+            'etat' => $request->has('etat'),
+        ]);
+    
+        return redirect()->route('inspection.show', $inspection->id)
+            ->with('success', 'Inspection créée avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $inspection = Inspection::findOrFail($id);
-        return view('inspections/show', compact('inspection'));
+        $tournee = $inspection->tournee;
+    
+        return view('inspections.show', compact('inspection', 'tournee'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function edit(Inspection $inspection)
     {
-        $inspection = Inspection::findOrFail($id);
         return view('inspections.edit', compact('inspection'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */    
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -74,21 +90,12 @@ class InspectionController extends Controller
     
         $inspection->save();
     
-        return redirect()->route('inspection.index')->with('success', 'Inspection mise à jour avec succès.');
+        return redirect()->route('inspection.show', ['id' => $inspection->id])->with('success', 'Inspection mise à jour avec succès.');
     }
-    
-    
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $inspection = Inspection::findOrFail($id);
         $inspection->delete();
-    
-        return redirect()->route('inspection.index')->with('success', 'Inspection supprimée avec succès.');
     }
-    
-
 }

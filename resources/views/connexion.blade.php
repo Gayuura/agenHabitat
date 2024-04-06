@@ -10,7 +10,7 @@
 </style>
 
 
-<a href="{{ url('/') }}">
+<a href="{{ url('/login') }}">
   <img src='{{ asset("images/logo.png") }}' alt="Logo Agen Habitat" class="img-logo img-fluid">
 </a>
 

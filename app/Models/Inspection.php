@@ -19,4 +19,9 @@ class Inspection extends Model
         'conform',
         'etat',
     ];
+
+    public function tournee()
+    {
+        return $this->belongsTo(Tournee::class);
+    }
 }

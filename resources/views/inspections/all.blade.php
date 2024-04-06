@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <h2 class="my-3">Liste des Inspections de la tournée "{{ $tournee->title }}"</h2>
+    <h2 class="my-3">Liste des Inspections</h2>
     <div class="row">
         <div class="col-md-10">
             <div class="row mb-3">
@@ -19,7 +19,7 @@
 
             <div class="row ">
                 <div class="col-md-10 col-lg-12 d-flex justify-content-end">
-                    <a href="{{ route('inspection.create', $tournee->id) }}" class="btn btn-success">Créer une Inspection</a>
+                    <a href="{{ url('/') }}" class="btn btn-success">Programmer une Inspection</a>
                 </div>
             </div>
             @if ($inspection->isEmpty())

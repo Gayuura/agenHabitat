@@ -16,9 +16,9 @@ class LoginController extends Controller
     {
         return view('connexion');
     }
+
     public function authenticate(Request $request): RedirectResponse
     {
-       
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -28,9 +28,9 @@ class LoginController extends Controller
         $user = User::where('email', $credentials['email'])->first();
     
         // If no user found or password doesn't match
-        if (!$user || $user->password !== $credentials['password']) {
+        if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return back()->withErrors([
-                'email' => 'Les informations d\'identification fournies ne correspondent pas à nos enregistrements.',
+                'password' => 'Échec de connexion. Vérifiez vos identifiants',
             ])->onlyInput('email');
         }
     
@@ -42,6 +42,7 @@ class LoginController extends Controller
     
         return redirect()->intended('/');
     }
+    
 
     public function logout(Request $request)
     {
@@ -51,6 +52,6 @@ class LoginController extends Controller
     
         $request->session()->regenerateToken();
     
-        return redirect('/');
+        return redirect('/login');
     }
 }

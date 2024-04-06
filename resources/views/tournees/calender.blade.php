@@ -8,58 +8,38 @@
 
                 <div id="event_form" style="display: none;">
                     <form>
-                        <div class="titre text-center">Programmation d'une inspection</div>
+                        <div class="titre text-center">Programmation d'une tournée</div>
+
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="title" class="champs_formulaire">Nom de l'inspection :</label>
+                                <label for="title" class="champs_formulaire">Nom de la tournée :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="title" name="title">
                             </div>
                         </div>
+
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="adress" class="champs_formulaire">Adresse :</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="adress" name="adress">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-6">
-                                <label for="start" class="champs_formulaire">Début de l'inspection :</label>
+                                <label for="start" class="champs_formulaire">Début de la tournée :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="datetime-local" class="form-control" id="start" name="start">
                             </div>
                         </div>
+
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="end" class="champs_formulaire">Fin de l'inspection :</label>
+                                <label for="end" class="champs_formulaire">Fin de la tournée :</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="datetime-local" class="form-control" id="end" name="end">
                             </div>
                         </div>
-                        <div class="row form-group">
-                            <div class="col-md-6">
-                                <label for="nomLoca" class="champs_formulaire">Nom du locataire :</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="nomLoca" name="nomLoca">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-6">
-                                <label for="numLoca" class="champs_formulaire">Numéro du locataire :</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="number" class="form-control" id="numLoca" name="numLoca">
-                            </div>
-                        </div>
+                        
                         <div class="row form-group justify-content-between">
                             <div class="col-md-6">
-                                <button type="button" id="createInspectionBtn" class="btn btn-primary">Créer l'inspection</button>
+                                <button type="button" id="createTourneeBtn" class="btn btn-primary">Créer la tournée</button>
                             </div>
                             <div class="col-md-6 text-right">
                                 <button type="button" id="annulerBtn" class="btn btn-primary">Annuler</button>
@@ -87,7 +67,7 @@
                     center:'title',
                     right:'month,agendaWeek,agendaDay'
                 },
-                events:'/calender',
+                events:'/',
                 selectable:true,
                 selectHelper: true,
                 select:function(start, end, allDay)
@@ -101,37 +81,26 @@
                 editable:true,
                 eventResize: function(event, delta)
                 {
-                    var conform = event.conform ? 1 : 0;
-                    var etat = event.etat ? 1 : 0;
 
                     var start = $.fullCalendar.formatDate(event.start, 'YYYY-MM-DD HH:mm:ss');
                     var end = $.fullCalendar.formatDate(event.end, 'YYYY-MM-DD HH:mm:ss');
                     var title = event.title;
-                    var adress = event.adress;
-                    var nomLoca = event.nomLoca;
-                    var numLoca = event.numLoca;
-                    var conform = event.conform;
-                    var etat = event.etat;
+
                     var id = event.id;
                     $.ajax({
-                        url:"/calender/action",
+                        url:"/action",
                         type:"POST",
                         data:{
                             title: title,
-                            adress: adress,
                             start: start,
                             end: end,
-                            nomLoca: nomLoca,
-                            numLoca: numLoca,
-                            conform: conform,
-                            etat: etat,
                             id:id,
                             type: 'update'
                         },
                         success:function(response)
                         {
                             calendar.fullCalendar('refetchEvents');
-                            toastr.success('Inspection mise à jour !', '', {
+                            toastr.success('Tournée mise à jour !', '', {
                                 positionClass: 'toast-bottom-right'
                             });
                         }
@@ -139,37 +108,25 @@
                 },
                 eventDrop: function(event, delta)
                 {
-                    var conform = event.conform ? 1 : 0;
-                    var etat = event.etat ? 1 : 0;
 
                     var start = $.fullCalendar.formatDate(event.start, 'YYYY-MM-DD HH:mm:ss');
                     var end = $.fullCalendar.formatDate(event.end, 'YYYY-MM-DD HH:mm:ss');
                     var title = event.title;
-                    var adress = event.adress;
-                    var nomLoca = event.nomLoca;
-                    var numLoca = event.numLoca;
-                    var conform = event.conform;
-                    var etat = event.etat;
                     var id = event.id;
                     $.ajax({
-                        url:"/calender/action",
+                        url:"/action",
                         type:"POST",
                         data:{
                             title: title,
-                            adress: adress,
                             start: start,
                             end: end,
-                            nomLoca: nomLoca,
-                            numLoca: numLoca,
-                            conform: conform,
-                            etat: etat,
                             id:id,
                             type: 'update'
                         },
                         success:function(response)
                         {
                             calendar.fullCalendar('refetchEvents');
-                            toastr.success('Inspection mise à jour !', '', {
+                            toastr.success('Tournée mise à jour !', '', {
                                 positionClass: 'toast-bottom-right'
                             });
                         }
@@ -178,7 +135,7 @@
                 eventClick: function(event) {
                     var eventId = event.id;
                     var eventName = event.title;
-                    window.location.href = "/inspection/" + eventId;
+                    window.location.href = "/tournee/" + eventId + "/inspection";
                 },
                 dayRender: function (date, cell) {
                     if (date.isSameOrBefore(moment(), 'day')) {
@@ -187,33 +144,41 @@
                 }
             });
 
-            $('#createInspectionBtn').click(function() {
-                var conform = $('#conform').is(':checked') ? 1 : 0;
-                var etat = $('#etat').is(':checked') ? 1 : 0;
+            $('#createTourneeBtn').click(function() {
+                var title = $('#title').val();
+                var start = $('#start').val();
+                var end = $('#end').val();
 
-                $.ajax({
-                    url: "/calender/action",
-                    type: "POST",
-                    data:{
-                        title: $('#title').val(),
-                        adress: $('#adress').val(),
-                        start: $('#start').val(),
-                        end: $('#end').val(),
-                        nomLoca: $('#nomLoca').val(),
-                        numLoca: $('#numLoca').val(),
-                        conform: conform,
-                        etat: etat,
-                        type: 'add'
-                    },
-                    success: function(data) {
-                        calendar.fullCalendar('refetchEvents');
-                        toastr.success('Inspection créée !', '', {
-                            positionClass: 'toast-bottom-right'
-                        });
-                        $('#event_form').hide();
-                        $('#event_Form')[0].reset();
-                    }
-                });
+                if (title && start && end) {
+                    $.ajax({
+                        url: "/action",
+                        type: "POST",
+                        data: {
+                            title: title,
+                            start: start,
+                            end: end,
+                            type: 'add'
+                        },
+                        success: function(data) {
+                            calendar.fullCalendar('refetchEvents');
+                            toastr.success('Tournée créée !', '', {
+                                positionClass: 'toast-bottom-right'
+                            });
+                            $('#event_form').hide();
+                            $('#event_Form')[0].reset();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            toastr.error('Une erreur est survenue lors de la création de la tournée.', '', {
+                                positionClass: 'toast-bottom-right'
+                            });
+                        }
+                    });
+                } else {
+                    toastr.warning('Veuillez remplir tous les champs.', '', {
+                        positionClass: 'toast-bottom-right'
+                    });
+                }
             });
 
             $('#annulerBtn').click(function() {
