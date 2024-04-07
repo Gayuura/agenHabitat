@@ -119,7 +119,7 @@
             <label>Conformité RE 2020 :</label>
             <div class="font-italic">
                 @if ($rapport->conformite_R2_2020)
-                    <span class="text-success">Conforme</span>
+                    <span class="text-success" style="margin-left: 40%;">Conforme</span>
                 @else
                     <span class="text-danger">Non Conforme</span>
                 @endif

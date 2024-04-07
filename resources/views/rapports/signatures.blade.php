@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="my-3">Signatures du Rapport</h2>
 <div class="container my-5">
-    <form action="{{ route('rapport.signatures.store') }}" method="post" class="section texte_noir" enctype="multipart/form-data">
+    <form action="{{ route('rapport.signatures.store',$inspectionId) }}" method="post" class="section texte_noir" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">

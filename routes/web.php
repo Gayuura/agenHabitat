@@ -64,7 +64,7 @@ Route::get('/rapport/create/{inspection}', [RapportController::class, 'createRep
 Route::post('/storeReport/{inspection}', [RapportController::class, 'storeReport'])->name('rapport.store');
 
 // Stocker les signatures dans la base de données
-Route::post('/rapport/signatures', [RapportController::class, 'storeSignatures'])->name('rapport.signatures.store');
+Route::post('/{inspectionId}/rapport/signatures', [RapportController::class, 'storeSignatures'])->name('rapport.signatures.store');
 
 // Afficher le rapport complet avec les signatures
 Route::get('/rapport/{rapport}', [RapportController::class, 'showReport'])->name('rapport.show');

@@ -18,7 +18,6 @@ class RapportController extends Controller
     
     public function storeReport(Request $request, $inspectionId)
     {
-        // Valider les données du formulaire
         $validatedData = $request->validate([
             'nom_prenom' => 'required',
             'date_entree' => 'required|date',
@@ -34,43 +33,40 @@ class RapportController extends Controller
             'type_chauffage' => 'required',
             'annee_construction' => 'required|numeric',
             'classe_energetique' => 'required',
-            'conformite_R2_2020' => 'required',
+            'conformite_R2_2020' => 'nullable',
         ]);
-    
-        // Indiquer la conformité R2 2020
-        $validatedData['conformite_R2_2020'] = $request->has('conformite_R2_2020');
-    
-        // Ajouter l'ID de l'inspection au tableau des données validées
+
         $validatedData['inspection_id'] = $inspectionId;
+
+        $conformiteR2020 = $request->has('conformite_R2_2020') ? true : false;
+        $validatedData['conformite_R2_2020'] = $conformiteR2020;
     
-        // Stocker les données du rapport en session pour les utiliser dans la page des signatures
         $request->session()->put('rapport_data', $validatedData);
     
-
-        // Rediriger vers la page pour ajouter les signatures en utilisant l'ID du rapport
-        return view('rapports.signatures');
-    } 
+        return view('rapports.signatures', ['inspectionId' => $inspectionId]);
+    }
     
-    public function storeSignatures(Request $request)
+    
+    public function storeSignatures(Request $request, $inspectionId)
     {
-        // Récupérer les données du rapport de la session
         $rapportData = $request->session()->get('rapport_data');
     
-        // Créer un nouveau rapport avec les données stockées
         $rapport = Rapport::create($rapportData);
     
-        // Enregistrer les signatures dans le rapport nouvellement créé
         $rapport->update([
             'signature_inspecteur' => $request->input('signatureData1'),
             'signature_locataire' => $request->input('signatureData2'),
         ]);
     
-        // Supprimer les données du rapport de la session après utilisation
+    $inspection = Inspection::findOrFail($inspectionId);
+    $inspection->update(['conform' => $rapport->conformite_R2_2020, 'etat' => 1]);
+
+    
         $request->session()->forget('rapport_data');
     
-        // Rediriger vers la vue d'affichage du rapport
         return redirect()->route('rapport.show', $rapport->id);
     }
+    
     
     
     
