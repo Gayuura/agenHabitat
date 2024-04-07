@@ -24,4 +24,8 @@ class Inspection extends Model
     {
         return $this->belongsTo(Tournee::class);
     }
+    public function rapport()
+    {
+        return $this->hasOne(Rapport::class);
+    }
 }

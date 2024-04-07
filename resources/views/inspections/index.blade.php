@@ -67,9 +67,10 @@
                             </td>
                             <td>
                                 @if (!$inspection->etat)
-                                    <a href="{{ route('report.form', $inspection->id) }}">
+                                    <a href="{{ route('rapport.create', $inspection->id) }}">
                                         <img src="{{ asset('images/Icone_Rapport.png') }}" class="img-icone img-fluid" alt="Créer un rapport">
                                     </a>
+
                                     <a href="{{ route('inspection.edit', $inspection->id) }}">
                                         <img src="{{ asset('images/Icone_Edition.png') }}" class="img-icone img-fluid" alt="Modifier l'inspection">
                                     </a>

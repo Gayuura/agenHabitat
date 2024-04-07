@@ -2,91 +2,103 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Locataire;
-use App\Models\Logement;
+use App\Models\Inspection;
 use App\Models\Rapport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RapportController extends Controller
 {
-    function showReportForm($inspection = 0) {
-        session(['inspection'=> $inspection]);
-        return view('rapports.addRapport', compact('inspection'));
+    public function createReport($inspectionid)
+    {
+        $inspection = Inspection::findOrFail($inspectionid);
+        return view('rapports.create', compact('inspection'));
     }
-    function showReportSigning(Request $request) {
     
-        $inputs = $request->except('_token');
-        //dd($request->inspection, session()->all());
-        foreach ($inputs as $key => $value) {
-            session([$key => $value]);
-        }
+    public function storeReport(Request $request, $inspectionId)
+    {
+        // Valider les données du formulaire
+        $validatedData = $request->validate([
+            'nom_prenom' => 'required',
+            'date_entree' => 'required|date',
+            'tel_mobile' => 'required|numeric',
+            'email' => 'required|email',
+            'date_rapport' => 'required|date',
+            'adresse_logement' => 'required',
+            'type_logement' => 'required',
+            'nombre_pieces' => 'required|numeric',
+            'superficie_m2' => 'required|numeric',
+            'etage' => 'required|numeric',
+            'toiture' => 'required',
+            'type_chauffage' => 'required',
+            'annee_construction' => 'required|numeric',
+            'classe_energetique' => 'required',
+            'conformite_R2_2020' => 'required',
+        ]);
+    
+        // Indiquer la conformité R2 2020
+        $validatedData['conformite_R2_2020'] = $request->has('conformite_R2_2020');
+    
+        // Ajouter l'ID de l'inspection au tableau des données validées
+        $validatedData['inspection_id'] = $inspectionId;
+    
+        // Stocker les données du rapport en session pour les utiliser dans la page des signatures
+        $request->session()->put('rapport_data', $validatedData);
+    
 
-        return view('rapports.addSignature');
+        // Rediriger vers la page pour ajouter les signatures en utilisant l'ID du rapport
+        return view('rapports.signatures');
+    } 
+    
+    public function storeSignatures(Request $request)
+    {
+        // Récupérer les données du rapport de la session
+        $rapportData = $request->session()->get('rapport_data');
+    
+        // Créer un nouveau rapport avec les données stockées
+        $rapport = Rapport::create($rapportData);
+    
+        // Enregistrer les signatures dans le rapport nouvellement créé
+        $rapport->update([
+            'signature_inspecteur' => $request->input('signatureData1'),
+            'signature_locataire' => $request->input('signatureData2'),
+        ]);
+    
+        // Supprimer les données du rapport de la session après utilisation
+        $request->session()->forget('rapport_data');
+    
+        // Rediriger vers la vue d'affichage du rapport
+        return redirect()->route('rapport.show', $rapport->id);
     }
-    function create(Request $request){
-        dd( session('conformite_R2_2020'));
-        //dd($request->all(), session()->all());
-        // Récupérer les données de la signature du premier canvas
-        $signatureData1 = $request->input('signatureData1');
-        $signature1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $signatureData1));
-        
-        // Enregistrer les données de la signature dans un fichier sur le serveur
-        $path1 = 'signatures/' . uniqid() . '.png';        
-        Storage::put($path1, $signature1);
+    
+    
+    
+    public function showReport($rapportId)
+    {
+        $rapport = Rapport::findOrFail($rapportId);
+    
+        return view('rapports.show', compact('rapport'));
+    }
 
-        // Récupérer les données de la signature du deuxième canvas
-        $signatureData2 = $request->input('signatureData2');
-        $signature2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $signatureData2));
+    public function showReportFromInspec($inspectionId)
+    {
+        $inspection = Inspection::findOrFail($inspectionId);
+    
+        $rapport = $inspection->rapport;
 
-        // Enregistrer les données de la signature dans un fichier sur le serveur
-        $path2 = 'signatures/' . uniqid() . '.png';
-        Storage::put($path2, $signature2);
+        return view('rapports.show', compact('rapport'));
+    }
+    
+    
 
-        // Enregistrer les chemins d'accès des images des signatures dans la base de données
-        // Supposons que vous ayez un modèle "Rapport" avec un champ "signature_path_1" et un champ "signature_path_2"
-       
-       $rapport = new Rapport();
-       $rapport->signature_locataire = $path1;
-       $rapport->signature_inspecteur = $path2;
-       $rapport->inspection_id = session('inspection'); // Supposons que l'inspection a l'ID 1
-       $rapport->save();
+    public function generatePdf($rapportId)
+    {
+        $rapport = Rapport::findOrFail($rapportId);
+        $signature = $rapport->signature;
 
-       $logement = new Logement();
+        $pdf = PDF::loadView('rapports.pdf', compact('rapport', 'signature'));
 
-
-       // Insérer les valeurs provenant de la session
-       $logement->date_rapport = session('date_rapport');
-       $logement->adresse_logement = session('adresse_logement');
-       $logement->type_logement = session('type_logement');
-       $logement->nombre_pieces = session('nombre_pieces');
-       $logement->superficie_m2 = session('superficie_m2');
-       $logement->etage = session('etage');
-       $logement->toiture = session('toiture');
-       $logement->type_chauffage = session('type_chauffage');
-       $logement->annee_construction = session('annee_construction');
-       $logement->classe_energetique = session('classe_energetique');
-       $logement->conformite_R2_2020 = session('conformite_R2_2020');
-       $logement->rapport_id = session('rapport_id');
-       
-       // Enregistrer le logement dans la base de données
-       $logement->save();
-
-
-       $locataire = new Locataire();
-
-        // Insérer les valeurs provenant de la session
-        $locataire->nom_prenom = session('nom_prenom');
-        $locataire->date_entree = session('date_entree');
-        $locataire->tel_mobile = session('tel_mobile');
-        $locataire->email = session('email');
-        $locataire->rapport_id = session('rapport_id');
-
-        // Enregistrer le locataire dans la base de données
-        $locataire->save();
-
-
-        
-        // Rediriger ou effectuer d'autres actions après l'enregistrement
+        return $pdf->download('rapport.pdf');
     }
 }

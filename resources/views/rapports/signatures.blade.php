@@ -1,9 +1,9 @@
 @extends('layout.app')
 
 @section('content')
-<h2 class="my-3">Nouveau Rapport</h2>
+<h2 class="my-3">Signatures du Rapport</h2>
 <div class="container my-5">
-    <form action="{{ route('report.step.two') }}" method="post" class="section texte_noir" enctype="multipart/form-data">
+    <form action="{{ route('rapport.signatures.store') }}" method="post" class="section texte_noir" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
@@ -31,7 +31,6 @@
         <div class="text-center">
             <button type="submit" class="btn_add_signa">Ajouter les Signatures</button>
         </div>
-
     </form>
 </div>
 
@@ -43,17 +42,16 @@
     function clearSignature1() {
         signaturePad1.clear();
     }
+
     function clearSignature2() {
         signaturePad2.clear();
     }
 
-    document.querySelector('form').addEventListener('submit', function (e) {
+    document.querySelector('form').addEventListener('submit', function(e) {
         var signatureData1 = signaturePad1.isEmpty() ? '' : signaturePad1.toDataURL();
         var signatureData2 = signaturePad2.isEmpty() ? '' : signaturePad2.toDataURL();
-
         document.getElementById('signatureData1').value = signatureData1;
         document.getElementById('signatureData2').value = signatureData2;
     });
 </script>
-
 @endsection

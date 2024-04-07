@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inspection;
 use App\Models\Tournee;
+use App\Models\Rapport;
 use Illuminate\Http\Request;
 
 class InspectionController extends Controller
@@ -63,6 +64,21 @@ class InspectionController extends Controller
     
         return view('inspections.show', compact('inspection', 'tournee'));
     }
+
+    public function showFromRapport($rapportid)
+    {
+        // Récupérer le rapport
+        $rapport = Rapport::findOrFail($rapportid);
+    
+        // Récupérer l'inspection associée au rapport
+        $inspection = $rapport->inspection;
+    
+        // Récupérer la tournée associée à l'inspection
+        $tournee = $inspection->tournee;
+    
+        return view('inspections.show', compact('inspection', 'tournee'));
+    }
+    
 
     public function edit(Inspection $inspection)
     {

@@ -89,17 +89,24 @@
             <div class="row form-group justify-content-between">
                 @if (!$inspection->etat)
                     <div class="col-4 text-center d-flex">
-                        <a href="{{ route('report.form', $inspection->id) }}" class="text-decoration-none btn_New_rapport">Nouveau Rapport</a>
+                        <a href="{{ route('rapport.create', $inspection->id) }}" class="text-decoration-none btn_New_rapport">Nouveau Rapport</a>
                     </div>
                     <div class="col-4 text-center d-flex">
                         <a href="{{ route('inspection.edit', $inspection->id) }}" class="text-decoration-none btn_modifier">Modifier l'inspection</a>
                     </div>
+                    <div class="col-4 text-center d-flex">
+                        <a href="{{ route('Insptournee.index', $tournee->id) }}" class="text-dark text-decoration-none btn_retour">Retour aux inspections</a>
+                    </div>
+                @else
+                    <div class="col-6 text-center d-flex">
+                        <a href="{{ route('inspection.rapport.show', $inspection) }}" class="text-decoration-none btn_New_rapport">Ouvrir le rapport</a>
+                    </div>
+                    <div class="col-6 text-center d-flex">
+                        <a href="{{ route('Insptournee.index', $tournee->id) }}" class="text-dark text-decoration-none btn_retour">Retour aux inspections</a>
+                    </div>
                 @endif
-                <div class="col-4 text-center d-flex">
-                    <a href="{{ route('Insptournee.index', $tournee->id) }}" class="text-dark text-decoration-none btn_retour">Retour aux inspections</a>
-                </div>
+                
             </div>
-
         </div>
     </div>
 @endsection

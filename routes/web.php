@@ -35,10 +35,16 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/inspections', [InspectionController::class, 'allInspections'])->name('inspections.all');
     Route::get('/inspection/{id}',[InspectionController::class, 'show'])->name('inspection.show');
+
+    Route::get('/inspections/{rapportid}',[InspectionController::class, 'showFromRapport'])->name('Retour.Inspection.show');
+
+
     Route::delete('/inspection/{id}/delete', [InspectionController::class,'destroy'])->name('inspection.destroy');
     Route::get('/inspection/{inspection}/edit', [InspectionController::class, 'edit'])->name('inspection.edit');
     Route::put('/inspection/{inspection}', [InspectionController::class, 'update'])->name('inspection.update');
     Route::post('/inspection/store', [InspectionController::class, 'store'])->name('inspection.store');
+
+    Route::get('inspection/{inspection}/rapport', [RapportController::class, 'showReportFromInspec'])->name('inspection.rapport.show');
 
 
     Route::get('/tournee', [TourneeController::class, 'index'])->name('tournee.index');
@@ -51,12 +57,22 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tournee/{tournee_id}/inspection/create', [InspectionController::class, 'create'])->name('inspection.create');
 
 
-    Route::get('/ajout_de_rapport/{inspection}',  [RapportController::class,'showReportForm'] )->name('report.form');
-    Route::post('/signature_rapport',  [RapportController::class,'showReportSigning'] )->name('report.step.one');
-    Route::post('/insertion_rapport',  [RapportController::class,'create'] )->name('report.step.two');
+// Afficher le formulaire pour créer un nouveau rapport
+Route::get('/rapport/create/{inspection}', [RapportController::class, 'createReport'])->name('rapport.create');
+
+// Stocker le nouveau rapport dans la base de données
+Route::post('/storeReport/{inspection}', [RapportController::class, 'storeReport'])->name('rapport.store');
+
+// Stocker les signatures dans la base de données
+Route::post('/rapport/signatures', [RapportController::class, 'storeSignatures'])->name('rapport.signatures.store');
+
+// Afficher le rapport complet avec les signatures
+Route::get('/rapport/{rapport}', [RapportController::class, 'showReport'])->name('rapport.show');
+
+Route::get('/rapport/{rapport}/pdf', [RapportController::class, 'generatePdf'])->name('rapport.pdf');
 });
 
-// Routes de connexion
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->withoutMiddleware(['auth']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
