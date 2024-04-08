@@ -36,7 +36,7 @@
                             <th>Numéro du Locataire</th>
                             <th style="cursor: pointer;">Conformité</th>
                             <th style="cursor: pointer;">État</th>
-                            <th>Actions</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,6 +76,10 @@
 
                                     <a href="#" onclick="openDeleteConfirmationModal({{ $inspection->id }})">
                                         <img src="{{ asset('images/Icone_Supprimer.png') }}" class="img-icone img-fluid" alt="Supprimer l'inspection">
+                                    </a>
+                                @else
+                                    <a href="{{ route('inspection.rapport.show', $inspection) }}">
+                                        <img src="{{ asset('images/Icone_Ouvrir.png') }}" class="img-icone img-fluid" alt="Ouvrir le rapport">
                                     </a>
                                 @endif
                             </td>
