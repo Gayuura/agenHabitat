@@ -26,6 +26,8 @@ class Rapport extends Model
         'annee_construction',
         'classe_energetique',
         'conformite_R2_2020',
+        'signature_inspecteur',
+        'signature_locataire',
     ];
 
     public function inspection()

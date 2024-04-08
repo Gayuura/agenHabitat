@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="my-3">Signatures du Rapport</h2>
 <div class="container my-5">
-    <form action="{{ route('rapport.signatures.store',$inspectionId) }}" method="post" class="section texte_noir" enctype="multipart/form-data">
+    <form id="signatureForm" action="{{ route('rapport.signatures.store', $inspectionId) }}" method="post" class="section texte_noir" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
@@ -14,6 +14,7 @@
                     <button type="button" onclick="clearSignature1()" class="btn_del_signa">Effacer la signature</button>
                 </div>
                 <br><br>
+
                 <input type="hidden" id="signatureData1" name="signatureData1">
             </div>
             <div class="col-md-6">
@@ -24,12 +25,13 @@
                     <button type="button" onclick="clearSignature2()" class="btn_del_signa">Effacer la signature</button>
                 </div>
                 <br><br>
+
                 <input type="hidden" id="signatureData2" name="signatureData2">
             </div>
         </div>
         <br>
         <div class="text-center">
-            <button type="submit" class="btn_add_signa">Ajouter les Signatures</button>
+            <button type="button" id="submitSignatures" class="btn_add_signa">Ajouter les Signatures</button>
         </div>
     </form>
 </div>
@@ -47,11 +49,16 @@
         signaturePad2.clear();
     }
 
-    document.querySelector('form').addEventListener('submit', function(e) {
+
+    document.getElementById('submitSignatures').addEventListener('click', function() {
+
         var signatureData1 = signaturePad1.isEmpty() ? '' : signaturePad1.toDataURL();
         var signatureData2 = signaturePad2.isEmpty() ? '' : signaturePad2.toDataURL();
+
         document.getElementById('signatureData1').value = signatureData1;
         document.getElementById('signatureData2').value = signatureData2;
+
+        document.getElementById('signatureForm').submit();
     });
 </script>
 @endsection

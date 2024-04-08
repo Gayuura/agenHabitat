@@ -29,8 +29,8 @@ return new class extends Migration
             $table->string('annee_construction')->nullable();
             $table->string('classe_energetique')->nullable();
             $table->boolean('conformite_R2_2020')->nullable();
-            $table->string('signature_locataire')->nullable();
-            $table->string('signature_inspecteur')->nullable();
+            $table->binary('signature_locataire',21840)->nullable();
+            $table->binary('signature_inspecteur',21840)->nullable();
             $table->timestamps();
         });
     }

@@ -34,6 +34,8 @@ class RapportController extends Controller
             'annee_construction' => 'required|numeric',
             'classe_energetique' => 'required',
             'conformite_R2_2020' => 'nullable',
+            'signature_locataire' => 'nullable',
+            'signature_inspecteur' => 'nullable',
         ]);
 
         $validatedData['inspection_id'] = $inspectionId;
@@ -52,16 +54,15 @@ class RapportController extends Controller
         $rapportData = $request->session()->get('rapport_data');
     
         $rapport = Rapport::create($rapportData);
-    
+
         $rapport->update([
             'signature_inspecteur' => $request->input('signatureData1'),
             'signature_locataire' => $request->input('signatureData2'),
         ]);
     
-    $inspection = Inspection::findOrFail($inspectionId);
-    $inspection->update(['conform' => $rapport->conformite_R2_2020, 'etat' => 1]);
+        $inspection = Inspection::findOrFail($inspectionId);
+        $inspection->update(['conform' => $rapport->conformite_R2_2020, 'etat' => 1]);
 
-    
         $request->session()->forget('rapport_data');
     
         return redirect()->route('rapport.show', $rapport->id);
