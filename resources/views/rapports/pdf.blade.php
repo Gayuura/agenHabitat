@@ -13,8 +13,7 @@
         }
         h1 {
             text-align: center;
-            padding: 10px;
-            font-size: 40px;
+            font-size: 38px;
         }
         h2 {
             text-align: center;
@@ -24,13 +23,19 @@
             border-radius: 50px;
         }
         .rapport {
-            font-size: 18px;
+            font-size: 13px;
             margin-top: 30px;
-            margin-left: 25%;
+            margin-left: 20%;
         }
         .rapport label {
             margin-right: 30px;
             font-weight: bold;
+        }
+        .signature label{
+            font-size: 13px;
+            margin-top: 30px;
+            font-weight: bold;
+            margin-left: 15%;
         }
         .font-italic {
             font-style: italic;
@@ -43,7 +48,6 @@
             color: #CE1C00;
             font-weight: bold;
         }
-
     </style>
 </head>
 
@@ -124,7 +128,19 @@
                     <span class="text-danger">Non Conforme</span>
                 @endif
             </div>
-        </div>
+        </div><br>
     </div>
+
+        <div class="signature">
+            <div style="display: flex;">
+                <label>Signature de l'inspecteur</label>
+                <label>Signature du locataire</label>
+            </div><br>
+            <div>
+                <span><img src="{{ $rapport->signature_inspecteur }}" alt="Signature de l'inspecteur"></span>
+                <span><img src="{{ $rapport->signature_locataire }}" alt="Signature du locataire"></span>
+            </div>
+        </div>
+
 </body>
 </html>

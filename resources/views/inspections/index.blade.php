@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <h2 class="my-3">Liste des Inspections de la tournée "{{ $tournee->title }}"</h2>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-11">
             <div class="row mb-3">
                 <div class="col-md-2">
                     <input type="text" id="filterTitle" class="form-control" placeholder="Nom de l'inspection">
