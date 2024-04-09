@@ -53,7 +53,7 @@
                             <label for="numLoca" class="champs_formulaire">Numéro du locataire :</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="number" class="form-control" id="numLoca" name="numLoca">
+                            <input type="text" class="form-control" id="numLoca" name="numLoca">
                         </div>
                     </div>
 

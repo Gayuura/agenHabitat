@@ -24,7 +24,7 @@
 
             <div class="mb-3 field">
               <label for="username" class="form-label">Email d'utilisateur</label>
-              <input name="email" type="text" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur"  value="{{ old('email') }}" required>
+              <input name="email" type="text" class="form-control" id="username" placeholder="Adresse e-mail"  value="{{ old('email') }}" required>
             </div>
             <div id="emailHelp" class="form-text ">
               @error('email')
@@ -34,7 +34,7 @@
 
             <div class="mb-3 field">
               <label for="password" class="form-label">Mot de passe</label>
-              <input name="password" type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe"  value="{{ old('password') }}" required>
+              <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe"  value="{{ old('password') }}" required>
             </div>
             <div id="passwordHelp" class="form-text ">
                 @error('password')

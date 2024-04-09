@@ -18,7 +18,7 @@ return new class extends Migration
             $table->datetime('start');
             $table->datetime('end');
             $table->string('nomLoca');
-            $table->integer('numLoca');
+            $table->string('numLoca');
             $table->boolean('conform');
             $table->boolean('etat');
             $table->timestamps();

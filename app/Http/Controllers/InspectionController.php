@@ -36,7 +36,7 @@ class InspectionController extends Controller
             'start' => 'required|date',
             'end' => 'required|date|after:start',
             'nomLoca' => 'required',
-            'numLoca' => 'required|numeric',
+            'numLoca' => 'required',
         ]);
     
         $tournee_id = $request->tournee_id;

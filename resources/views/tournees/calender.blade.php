@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         
-                        <div class="row form-group justify-content-between">
+                        <div class="row">
                             <div class="col-md-6">
                                 <button type="button" id="createTourneeBtn" class="btn btn-primary">Créer la tournée</button>
                             </div>

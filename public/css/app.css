@@ -23,6 +23,8 @@
 }
 .img-icone{
     border-radius: 50%;
+    width: 32px;
+    height: 36px;
 }
 .msg_send{
     color: #41A707;
@@ -248,7 +250,7 @@ h3{
     max-width: 600px;
     width: 90%;
 }
-#createInspectionBtn,#annulerBtn {
+#createTourneeBtn,#annulerBtn {
     margin-top: 15%;
 }
 .champs_formulaire{
